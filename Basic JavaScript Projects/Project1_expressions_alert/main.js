@@ -15,3 +15,4 @@ var family="Adams", Dad="James", Mom="Jenny", Son="Harry", Dog="Jerry"; //Commen
 document.write(family);
 
 document.write(6+6); //expression
+
