@@ -11,3 +11,4 @@ function myDictionary(){
     delete Animal.Breed;
 document.getElementById("dictionary").innerHTML=Animal.Breed;
 }
+
