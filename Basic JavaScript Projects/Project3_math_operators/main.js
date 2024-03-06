@@ -24,3 +24,16 @@ function multiple(){
     let multiple=2+2+(2*3)-(6/2);
     document.getElementById("multip").innerHTML="2+2+(2*3)-(6/2)=" +multiple;
 }
+
+//remainder
+function remainder(){
+    let remain=60%7;
+    document.getElementById("mod").innerHTML="60%7=" + remain;
+}
+
+//negation operator
+
+function negation(){
+    let nege=10;
+    document.getElementById("neg").innerHTML=-nege;
+}
