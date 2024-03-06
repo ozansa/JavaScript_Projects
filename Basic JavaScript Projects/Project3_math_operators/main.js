@@ -37,3 +37,13 @@ function negation(){
     let nege=10;
     document.getElementById("neg").innerHTML=-nege;
 }
+// increment and decrement 
+x=10;
+x++;
+document.write(x);
+
+let y=10;
+y--;
+document.write(y);
+
+window.alert(Math.random()*20);    
