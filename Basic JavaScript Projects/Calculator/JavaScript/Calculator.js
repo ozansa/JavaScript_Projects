@@ -44,18 +44,12 @@ Calculator.operator = Next_Operator;
 }
 */
 
+
 const Calculator = {
     Display_Value: '0',
     First_Operand: null,
     Wait_Second_Operand: false,
     operator: null,
-};
-
-const Perform_Calculation = {
-    '/': (First_Operand, Second_Operand) => First_Operand / Second_Operand,
-    '*': (First_Operand, Second_Operand) => First_Operand * Second_Operand,
-    '+': (First_Operand, Second_Operand) => First_Operand + Second_Operand,
-    '-': (First_Operand, Second_Operand) => First_Operand - Second_Operand,
 };
 
 function Input_Digit(digit) {
@@ -68,8 +62,8 @@ function Input_Digit(digit) {
     }
 }
 
-function input_Decimal(dot) {
-    if (Calculator.Wait_Second_Operand === true) return;
+function Input_Decimal(dot) {
+    if (Calculator.Wait_Second_Operand === 'true') return;
     if (!Calculator.Display_Value.includes(dot)) {
         Calculator.Display_Value += dot;
     }
@@ -91,12 +85,57 @@ function Handle_Operator(Next_Operator) {
         let result = Perform_Calculation[operator](Value_Now, Value_of_Input);
         result = Number(result).toFixed(9);
         result = (result * 1).toString();
-        Calculator.Display_Value = parseFloat(result);
-        Calculator.First_Operand = parseFloat(result);
+        Calculator.Display_Value = result;
+        Calculator.First_Operand = result;
     }
 
     Calculator.Wait_Second_Operand = true;
     Calculator.operator = Next_Operator;
 }
 
+const Perform_Calculation = {
+    '/': (First_Operand, Second_Operand) => First_Operand / Second_Operand,
+    '*': (First_Operand, Second_Operand) => First_Operand * Second_Operand,
+    '+': (First_Operand, Second_Operand) => First_Operand + Second_Operand,
+    '-': (First_Operand, Second_Operand) => First_Operand - Second_Operand,
+    '=': (First_Operand, Second_Operand) => Second_Operand
+};
 
+function Calculator_Reset(){
+    Calculator.Display_Value='0';
+    Calculator.First_Operand=null;
+    Calculator.Wait_Second_Operand=false;
+    Calculator.operator=null;
+}
+
+function Update_Display(){
+    const display=document.querySelector('.calculator-screen');
+    display.value=Calculator.Display_Value;
+
+}
+
+Update_Display();
+const keys = document.querySelector('.calculator-keys');
+keys.addEventListener('click', (event) => {
+    const { target } = event;
+    if (!target.matches('button')) {
+        return;
+    }
+    if (target.classList.contains('operator')) {
+        Handle_Operator(target.value);
+        Update_Display();
+        return;
+    }
+    if (target.classList.contains('decimal')) {
+        Input_Decimal(target.value);
+        Update_Display();
+        return;
+    }
+    if (target.classList.contains('all-clear')) {
+        Calculator_Reset();
+        Update_Display();
+        return;
+    }
+    Input_Digit(target.value);
+    Update_Display();
+});
