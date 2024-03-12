@@ -14,14 +14,21 @@
                     <p id='1'>Paragraph 1</p>\
                     <p id='2'>Paragraph 2</p>\
                     <p id='3'>Paragraph_3</p>\
+                    <p id='4'>Paragraph_4</p>\
                 </div>\
             </div>\
         </body>"
         );
+        
         $("#2").css({ "color": "red" });
         $("#3").click(function () {
             $("h1").hide();
         });
+        //hide  and reveal all level 1 headings over 0.3 seconds
+        $("#4").click(function () {
+        $("h1").hide( 500 ).delay( 1500 ).show( 300 );
+    });
+        
     });
 </script>
 
